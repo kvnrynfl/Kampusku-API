@@ -1,0 +1,20 @@
+{
+	"name": "kampusku-api",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "kvnrynfl",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kvnrynfl/Kampusku-API.git"
+	},
+	"bugs": {
+		"url": "https://github.com/kvnrynfl/Kampusku-API/issues"
+	},
+	"homepage": "https://github.com/kvnrynfl/Kampusku-API#readme",
+	"description": ""
+}
