@@ -18,8 +18,8 @@ const userSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ['admin', 'student', 'lecturer'],
-        required: true
+        enum: ['admin', 'mahasiswa', 'dosen', 'unknown'],
+        default: 'unknown'
     },
 }, {
     timestamps: true
@@ -34,7 +34,6 @@ userSchema.pre('save', async function (next) {
 
 userSchema.method('comparePassword', async function (candidatePassword) {
     return comparePassword(candidatePassword, this.password);
-
 });
 
 const User = mongoose.model('User', userSchema);
