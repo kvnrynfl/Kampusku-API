@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { hashPassword, comparePassword } = require('../utils/bcrypt')
 
 const userSchema = new Schema({
     name: {
@@ -22,6 +23,18 @@ const userSchema = new Schema({
     },
 }, {
     timestamps: true
+});
+
+userSchema.pre('save', async function (next) {
+    if (this.isModified('password') || this.isNew) {
+        this.password = await hashPassword(this.password);
+    }
+    next();
+});
+
+userSchema.method('comparePassword', async function (candidatePassword) {
+    return comparePassword(candidatePassword, this.password);
+
 });
 
 const User = mongoose.model('User', userSchema);
