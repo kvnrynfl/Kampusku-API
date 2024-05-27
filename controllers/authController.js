@@ -88,7 +88,7 @@ exports.register = [
             return res.status(201).json({
                 status: 'success',
                 message: 'User registered successfully',
-                data: await User.findById(newUser._id)
+                data: await User.findById(newUser._id).select(['-_id', '-password', '-__v'])
             });
         } catch (error) {
             console.error(error);
@@ -100,10 +100,9 @@ exports.register = [
     }
 ];
 
-
 exports.profile = async (req, res) => {
     try {
-        const user = await User.findById(req.user._id);
+        const user = await User.findById(req.user._id).select(['-_id', '-password', '-__v']);
 
         if (!user) {
             return res.status(404).json({
