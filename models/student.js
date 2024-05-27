@@ -4,11 +4,14 @@ const Schema = mongoose.Schema;
 const studentSchema = new Schema({
     user_id: {
         type: Schema.Types.ObjectId,
-        ref: 'User', required: true
+        ref: 'User',
+        required: true,
+        unique: true
     },
     nim: {
-        type: String, required: true,
-        unique: true
+        type: String,
+        unique: true,
+        default: null
     },
     major_id: {
         type: Schema.Types.ObjectId,

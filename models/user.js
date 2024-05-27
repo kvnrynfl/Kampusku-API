@@ -18,7 +18,7 @@ const userSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ['admin', 'mahasiswa', 'dosen', 'unknown'],
+        enum: ['unknown', 'mahasiswa', 'dosen', 'admin'],
         default: 'unknown'
     },
 }, {
