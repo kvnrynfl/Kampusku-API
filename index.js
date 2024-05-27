@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const authRoutes = require('./routes/authRoute');
+const majorRoutes = require('./routes/majorRoute');
 
 const PORT = process.env.PORT || 3000;
 
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/major', majorRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
