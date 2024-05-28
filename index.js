@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 
 const authRoutes = require('./routes/authRoute');
 const majorRoutes = require('./routes/majorRoute');
+const studentRoutes = require('./routes/studentRoute');
 
 const PORT = process.env.PORT || 3000;
 
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/major', majorRoutes);
+app.use('/api/student', studentRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
