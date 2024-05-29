@@ -7,8 +7,7 @@ const authMiddleware = async (req, res, next) => {
         if (!token) {
             return res.status(401).json({
                 status: 'error',
-                message: 'Access denied. No token provided.',
-                data: null
+                message: 'Access denied. No token provided.'
             });
         }
         const decoded = await verifyToken(token);
@@ -17,8 +16,7 @@ const authMiddleware = async (req, res, next) => {
         if (!user) {
             return res.status(401).json({
                 status: 'error',
-                message: 'Invalid token.',
-                data: null
+                message: 'Invalid token.'
             });
         }
 
@@ -28,10 +26,9 @@ const authMiddleware = async (req, res, next) => {
     } catch (error) {
         res.status(401).json({
             status: 'error',
-            message: 'Invalid token.',
-            data: null
+            message: 'Invalid token.'
         });
     }
 };
 
-module.exports = authMiddleware
+module.exports = authMiddleware;
