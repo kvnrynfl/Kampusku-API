@@ -1,6 +1,7 @@
+const moment = require('moment');
 const { validationResult, matchedData } = require('express-validator');
 const { User } = require('../models');
-const { generateToken } = require('../utils/jwt');
+const { generateToken, verifyToken } = require('../utils/jwt');
 
 exports.login = async (req, res) => {
     const errors = validationResult(req);
@@ -97,6 +98,37 @@ exports.profile = async (req, res) => {
             status: 'success',
             message: 'User profile retrieved successfully',
             data: user
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            status: 'error',
+            message: 'Internal Server Error'
+        });
+    }
+};
+
+exports.checkToken = async (req, res) => {
+    try {
+        const decoded = await verifyToken(req.token);
+
+        const createdAt = moment.unix(decoded.iat);
+        const expiresAt = moment.unix(decoded.exp);
+        const durationUntilExpiration = moment.duration(expiresAt.diff(moment()));
+
+        return res.status(200).json({
+            status: 'success',
+            message: 'Token details retrieved successfully',
+            data: {
+                createdAt: createdAt.format(),
+                expiresAt: expiresAt.format(),
+                durationUntilExpiration: {
+                    days: durationUntilExpiration.days(),
+                    hours: durationUntilExpiration.hours(),
+                    minutes: durationUntilExpiration.minutes(),
+                    seconds: durationUntilExpiration.seconds()
+                }
+            }
         });
     } catch (error) {
         console.log(error);
