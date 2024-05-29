@@ -7,10 +7,10 @@ const lecturerSchema = new Schema({
         ref: 'User',
         required: true
     },
-    lecturer_id: {
+    nidn: {
         type: String,
-        required: true,
-        unique: true
+        unique: true,
+        required: true
     },
     faculty: {
         type: String,
