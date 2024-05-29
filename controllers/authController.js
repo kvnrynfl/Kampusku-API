@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
         console.log(error);
         return res.status(500).json({
             status: 'error',
-            message: error.message
+            message: 'Internal Server Error'
         });
     }
 };
@@ -77,7 +77,7 @@ exports.register = async (req, res) => {
         console.log(error);
         return res.status(500).json({
             status: 'error',
-            message: error.message
+            message: 'Internal Server Error'
         });
     }
 };
@@ -102,7 +102,7 @@ exports.profile = async (req, res) => {
         console.log(error);
         return res.status(500).json({
             status: 'error',
-            message: error.message
+            message: 'Internal Server Error'
         });
     }
 };
@@ -149,7 +149,7 @@ exports.changePassword = async (req, res) => {
         console.log(error);
         return res.status(500).json({
             status: 'error',
-            message: error.message
+            message: 'Internal Server Error'
         });
     }
 };

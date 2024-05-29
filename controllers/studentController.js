@@ -6,7 +6,7 @@ exports.index = async (req, res) => {
         if (req.user.role === 'mahasiswa') {
             return res.status(200).json({
                 status: 'success',
-                message: 'Your data retrived successfully',
+                message: 'Your data retrieved successfully',
                 data: await Student.findOne({ user_id: req.user._id })
                     .populate('user_id', '-password -__v')
                     .populate('major_id', '-__v')
@@ -140,11 +140,11 @@ exports.update = async (req, res) => {
             });
         }
 
-        if (req.user.role === 'mahasiswa' && student.status === 'verified') {
-            return res.status().json({
+        if (req.user.role === 'mahasiswa' && student.status !== 'registered') {
+            return res.status(403).json({
                 status: 'error',
-                message: "tidak bisa mengupdate daata yang sudah di verifikasi"
-            })
+                message: "You cannot update data that has already been verified"
+            });
         }
 
         Object.assign(student, data);
@@ -154,7 +154,7 @@ exports.update = async (req, res) => {
         return res.status(200).json({
             status: 'success',
             message: 'Student updated successfully',
-            data: await Student.findById({ _id: student._id }).select('-_id -__v')
+            data: await Student.findById(student._id).select('-_id -__v')
         });
     } catch (error) {
         console.log(error);

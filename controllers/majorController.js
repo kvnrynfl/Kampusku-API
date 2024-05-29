@@ -14,7 +14,7 @@ exports.index = async (req, res) => {
         console.log(error);
         return res.status(500).json({
             status: 'error',
-            message: error.message
+            message: 'Internal Server Error'
         });
     }
 };
@@ -55,7 +55,7 @@ exports.create = async (req, res) => {
         console.log(error);
         return res.status(500).json({
             status: 'error',
-            message: error.message
+            message: 'Internal Server Error'
         });
     }
 };
@@ -80,7 +80,7 @@ exports.read = async (req, res) => {
         console.log(error);
         return res.status(500).json({
             status: 'error',
-            message: error.message
+            message: 'Internal Server Error'
         });
     }
 };
@@ -126,7 +126,7 @@ exports.update = async (req, res) => {
         console.log(error);
         return res.status(500).json({
             status: 'error',
-            message: error.message
+            message: 'Internal Server Error'
         });
     }
 };
@@ -150,7 +150,7 @@ exports.delete = async (req, res) => {
         console.log(error);
         return res.status(500).json({
             status: 'error',
-            message: error.message
+            message: 'Internal Server Error'
         });
     }
 };
