@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const majorController = require('../controllers/majorController');
 const { authMiddleware, roleMiddleware } = require('../middleware/');
-const { createMajorValidators, updateMajorValidators } = require('../validators/majorValidators');
+const { createMajorValidators, updateMajorValidators } = require('../validators/majorValidator');
 
 router.get('/', authMiddleware, majorController.index);
 router.post('/', authMiddleware, roleMiddleware(['admin']), createMajorValidators, majorController.create);
